@@ -1,0 +1,60 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html
+	xmlns = "http://www.w3.org/1999/xhtml"
+	xmlns:h = "http://java.sun.com/jsf/html"
+	xmlns:f = "http://java.sun.com/jsf/core"
+>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+coucou
+#{mbean1.message} <!-- get le message -->
+<h:form id="laForm"> <!-- Set le message -->
+<br/>
+<br/>
+<h:panelGrid columns="3" > 
+
+<f:facet name="header"> 
+<h:outputText value="Saisie controlee"/>
+</f:facet>
+<h:outputLabel value="Saisie data : "/><h:inputText id="inputData" value = "#{mbean1.data}" label="texte trop long" >
+				<f:validateLength maximum="15" /> 
+				</h:inputText>
+				<h:message for="inputData"/>
+<h:outputLabel value="Saisie data2 : "/><h:inputText id="inputData2" value = "#{mbean1.data2}" />
+				<h:message for="inputData2"/> 
+<h:outputLabel value="Saisie civilite(validateur) : "/><h:inputText id="civilite" value = "#{mbean1.civilite}" required ="true" label="civilite" >
+								<f:validator validatorId="civiliteValidator"/>
+								</h:inputText>
+								<h:message for="civilite" style="color:red"/>
+	</h:panelGrid>
+
+				<h:outputText id="inputData3" value="3"/>
+				<h:message for="inputData3"/>
+
+				<h:message for="inputData4"/>
+				
+
+
+	<h:messages  /> 
+	
+<!-- Les deux: <h:outputText value = "#{mbean1.lesDeux}" /> -->
+<br/>
+<br/>
+<h:commandButton type ="submit" value = "go"/>
+<br/>
+<h:commandButton type ="submit" value = "go results" action="jsf3result"/>
+<br/>
+<h:commandButton type ="submit" value = "go results conditionnel" action="#{mbean1.goConditionnel}"/>
+<br/>
+<h:commandButton type ="submit" value = "go navigation rule 1" action="pagesuivante"/>
+<br/>
+<h:commandButton type ="submit" value = "go navigation cas d'erreur" action="#{mbean1.testErreur}"/>
+</h:form>
+
+
+</body>
+</html>
